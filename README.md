@@ -65,6 +65,15 @@ Flags:
 Use "k8s-secret-injector [command] --help" for more information about a command.
 ```
 
+
+### Development
+
+If you like to contribute to this project, you are more than welcome. Please see our [DEVELOPMENT.md](./DEVELOPMENT.md) for details.
+
+### Release History
+
+Please see our [CHNANGELOG.md](./CHNANGELOG.md) for details.
+
 ### Contact
 
 If you have any suggestion or query. Contact us at
