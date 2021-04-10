@@ -28,3 +28,43 @@ There are some secret managers which are planned to be implemented in future.
     <img src="./static/k8s-secret-injector-arc.png">
 </div>
 
+### Installation
+
+We can simply clone the repo and compile the binary according to the OS architecture and environment.
+
+```shell
+make build-code
+```
+
+### Usage
+
+For using the k8s-secret-injector, simple `--help` flag can list out all the available options. For example:-
+
+```shell
+$ k8s-secret-injector --help
+K8s Secret Injector Version: 1.0
+
+A tool which can connect with multiple secret manager and inject them in environment variable
+
+Usage:
+  k8s-secret-injector [command]
+
+Available Commands:
+  help        Help about any command
+  vault       Fetch and inject secrets from Vault to a given command
+  version     Print the version of k8s secret injector
+
+Flags:
+      --config string      config file (default is $HOME/.k8s-injector.yaml)
+  -h, --help               help for k8s-secret-injector
+  -t, --toggle             Help message for toggle
+  -v, --verbosity string   Log level (debug, info, warn, error, fatal, panic (default "info")
+
+Use "k8s-secret-injector [command] --help" for more information about a command.
+```
+
+### Contact
+
+If you have any suggestion or query. Contact us at
+
+[opensource@opstree.com](mailto:opensource@opstree.com)
