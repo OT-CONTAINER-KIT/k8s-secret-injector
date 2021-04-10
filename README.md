@@ -36,6 +36,8 @@ We can simply clone the repo and compile the binary according to the OS architec
 make build-code
 ```
 
+In any case, if you don't want to compile the code. The binary can be installed by downloading from [Releases](https://gitlab.com/ot-container-kit/kubernetes/ot-kubernetes/k8s-secret-injector/-/releases) as well.
+
 ### Usage
 
 For using the k8s-secret-injector, simple `--help` flag can list out all the available options. For example:-
