@@ -12,3 +12,8 @@ There are some secret managers which are planned to be implemented in future.
 - **[Azure Key Vault](https://azure.microsoft.com/en-in/services/key-vault/)**
 - **[GCP Secret Manager](https://cloud.google.com/secret-manager)**
 
+### Supported Features
+
+- k8s-secret-injector can connect with Vault using Kubernetes as backend
+- Authenticate with Kubernetes using Serviceaccount mechanism
+- Inject secrets directly to the process, i.e. after the injection you cannot read secrets from the environment variable
