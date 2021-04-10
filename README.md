@@ -1,3 +1,7 @@
+<div align="left">
+    <img src="./static/k8s-secret-injector-logo.svg" height="120" width="120">
+</div>
+
 ## K8s Secret Injector
 
 k8s-secret-injector is a tool that can connect with multiple secret managers to fetch the secrets and then inject them into the environment variable in a secure way. The motive is to create this injector is to use it with another project of our k8s-vault-webhook but this can be used independently outside Kubernetes as well.
