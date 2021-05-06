@@ -3,6 +3,7 @@ module k8s-secret-injector
 go 1.16
 
 require (
+	github.com/aws/aws-sdk-go v1.30.27
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/go-test/deep v1.0.7 // indirect
 	github.com/google/go-cmp v0.5.4 // indirect
