@@ -9,10 +9,10 @@ k8s-secret-injector is a tool that can connect with multiple secret managers to 
 The secret managers which are currently supported:-
 
 - **[Hashicorp Vault](https://www.vaultproject.io/)**
+- **[AWS Secret Manager](https://aws.amazon.com/secrets-manager/)**
 
 There are some secret managers which are planned to be implemented in future.
 
-- **[AWS Secret Manager](https://aws.amazon.com/secrets-manager/)**
 - **[Azure Key Vault](https://azure.microsoft.com/en-in/services/key-vault/)**
 - **[GCP Secret Manager](https://cloud.google.com/secret-manager)**
 
@@ -20,7 +20,9 @@ There are some secret managers which are planned to be implemented in future.
 
 - k8s-secret-injector can connect with Vault using Kubernetes as backend
 - Authenticate with Kubernetes using Serviceaccount mechanism
+- Support AWS Secret Manager as secret manager backend
 - Inject secrets directly to the process, i.e. after the injection you cannot read secrets from the environment variable
+- Inject secret to pod's application process from AWS Secret Manager
 
 ### Architecture
 
@@ -52,6 +54,7 @@ Usage:
   k8s-secret-injector [command]
 
 Available Commands:
+  aws         Fetch secrets from AWS Secret Manager
   help        Help about any command
   vault       Fetch and inject secrets from Vault to a given command
   version     Print the version of k8s secret injector
