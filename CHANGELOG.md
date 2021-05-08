@@ -1,3 +1,10 @@
+### v2.0
+##### May 8, 2021
+
+#### :tada: [Features Added]
+
+- Added support for AWS secret manager
+
 ### v1.0
 ##### April 10, 2021
 
