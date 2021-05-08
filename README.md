@@ -10,10 +10,10 @@ The secret managers which are currently supported:-
 
 - **[Hashicorp Vault](https://www.vaultproject.io/)**
 - **[AWS Secret Manager](https://aws.amazon.com/secrets-manager/)**
+- **[Azure Key Vault](https://azure.microsoft.com/en-in/services/key-vault/)**
 
 There are some secret managers which are planned to be implemented in future.
 
-- **[Azure Key Vault](https://azure.microsoft.com/en-in/services/key-vault/)**
 - **[GCP Secret Manager](https://cloud.google.com/secret-manager)**
 
 ### Supported Features
@@ -38,7 +38,7 @@ We can simply clone the repo and compile the binary according to the OS architec
 make build-code
 ```
 
-In any case, if you don't want to compile the code. The binary can be installed by downloading from [Releases](https://gitlab.com/ot-container-kit/kubernetes/ot-kubernetes/k8s-secret-injector/-/releases) as well.
+In any case, if you don't want to compile the code. The binary can be installed by downloading from [Releases](https://github.com/OT-CONTAINER-KIT/k8s-secret-injector/releases) as well.
 
 ### Usage
 
@@ -55,6 +55,7 @@ Usage:
 
 Available Commands:
   aws         Fetch secrets from AWS Secret Manager
+  azure       Fetch secrets from Azure Key Vault
   help        Help about any command
   vault       Fetch and inject secrets from Vault to a given command
   version     Print the version of k8s secret injector
@@ -67,7 +68,6 @@ Flags:
 
 Use "k8s-secret-injector [command] --help" for more information about a command.
 ```
-
 
 ### Development
 
