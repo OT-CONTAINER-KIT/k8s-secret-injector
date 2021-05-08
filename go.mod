@@ -3,6 +3,8 @@ module k8s-secret-injector
 go 1.16
 
 require (
+	github.com/Azure-Samples/azure-sdk-for-go-samples v0.0.0-20210506191746-b49c4162aa1d // indirect
+	github.com/Azure/azure-sdk-for-go v48.0.0+incompatible
 	github.com/aws/aws-sdk-go v1.30.27
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/go-test/deep v1.0.7 // indirect
