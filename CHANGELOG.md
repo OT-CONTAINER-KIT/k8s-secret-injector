@@ -1,3 +1,10 @@
+### v3.0
+##### May 9, 2021
+
+#### :tada: [Features Added]
+
+- Added support for Azure Key Vault
+
 ### v2.0
 ##### May 8, 2021
 
