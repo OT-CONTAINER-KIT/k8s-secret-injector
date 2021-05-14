@@ -24,9 +24,11 @@
     volume_mappings:
     - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
     shell: "BASH"
+    run_next_parallel: true
   - action: "Build Docker image"
     type: "DOCKERFILE"
     dockerfile_path: "Dockerfile"
+    run_next_parallel: true
 
 - pipeline: "code-quality"
   on: "EVENT"
@@ -43,8 +45,10 @@
     type: "DOCKERFILE_LINTER"
     local_path: "Dockerfile"
     shell_type: "sh"
+    ignore_codes: "ER0015,EF0003"
+    run_next_parallel: true
 
-  - action: "Execute: go build -o k8s-secret-injector"
+  - action: "Execute: golang ci linter"
     type: "BUILD"
     working_directory: "/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
     docker_image_name: "library/golang"
@@ -57,3 +61,27 @@
     volume_mappings:
     - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
     shell: "BASH"
+    run_next_parallel: true
+
+- pipeline: "publish-image"
+  on: "EVENT"
+
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/master"
+    - "refs/pull/*"
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Push Docker image"
+    type: "DOCKER_PUSH"
+    login: "abhishek-dubey"
+    password: "secure!b1YxTrhil5I5L6q+u3Ctiw==.Ix9cDbdNIKsSty7IWShSfw=="
+    docker_image_tag: "4.0,latest"
+    repository: "$IMAGE_NAME"
+    registry: "quay.io"
+    trigger_conditions:
+    - trigger_condition: "VAR_IS"
+      trigger_variable_value: "master"
+      trigger_variable_key: "BUDDY_EXECUTION_BRANCH"
