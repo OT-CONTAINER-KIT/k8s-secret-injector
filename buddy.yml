@@ -1,0 +1,26 @@
+---
+- pipeline: "Build CodeBase"
+  on: "EVENT"
+
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/master"
+    - "refs/pull/*"
+
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  actions:
+  - action: "Execute: go build -o k8s-secret-injector"
+    type: "BUILD"
+    working_directory: "/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
+    docker_image_name: "library/golang"
+    docker_image_tag: "1.16.0"
+    execute_commands:
+    - "export GOPATH=/"
+    - "export GO15VENDOREXPERIMENT=1"
+    - "go get -d"
+    - "go build -o k8s-secret-injector"
+    volume_mappings:
+    - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
+    shell: "BASH"
