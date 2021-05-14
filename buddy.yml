@@ -38,6 +38,7 @@
     - "refs/pull/*"
   priority: "NORMAL"
   fail_on_prepare_env_warning: true
+  actions:
   - action: "Lint Dockerfile"
     type: "DOCKERFILE_LINTER"
     local_path: "Dockerfile"
