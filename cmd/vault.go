@@ -21,8 +21,6 @@ var (
 	vaultPath                 string
 	secretVersion             string
 	vaultUseSecretNamesAsKeys bool
-	credsPath                 string
-	secretManager             string
 )
 
 // vaultCmd represents the vault command
@@ -33,7 +31,7 @@ var vaultCmd = &cobra.Command{
 	Args:  validateConfig,
 	Run: func(cmd *cobra.Command, args []string) {
 		var err error
-		secretData := make(map[string]interface{})
+		secretData := make(map[string]interface{}) //nolint
 		vaultCfg := &vault.Config{
 			Role:              vaultRole,
 			TokenPath:         tokenPath,

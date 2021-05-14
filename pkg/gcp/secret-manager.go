@@ -59,7 +59,7 @@ func GetSecretData(client SecretManagerClient, accessRequest *secretmanagerpb.Ac
 }
 
 // ExtractPayload decode JSON respose from secret data
-func ExtractPayload(payload secretmanagerpb.SecretPayload) (map[string]interface{}, error) {
+func ExtractPayload(payload secretmanagerpb.SecretPayload) (map[string]interface{}, error) { //nolint
 	var secretData map[string]interface{}
 	err := json.Unmarshal(payload.Data, &secretData)
 	if err != nil {
@@ -117,7 +117,7 @@ func RetrieveSecret(client SecretManagerClient, cfg *Config) (map[string]interfa
 	if err != nil {
 		return nil, err
 	}
-	secretData, err := ExtractPayload(*payload)
+	secretData, err := ExtractPayload(*payload) //nolint
 	if err != nil {
 		return nil, err
 	}

@@ -6,10 +6,10 @@ import (
 	"os"
 	"path/filepath"
 
-	gcp "k8s-secret-injector/pkg/gcp"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	gcp "k8s-secret-injector/pkg/gcp"
 )
 
 var (
@@ -23,8 +23,8 @@ var (
 var gcpCmd = &cobra.Command{
 	Use:   "gcp",
 	Short: "Fetch secrets from GCP Secret Manager",
-	Long: `Fetch secrets from GCP Secret Manager`,
-	Args: validateCmdFlags,
+	Long:  `Fetch secrets from GCP Secret Manager`,
+	Args:  validateCmdFlags,
 	Run: func(cmd *cobra.Command, args []string) {
 		var (
 			secretData map[string]interface{}

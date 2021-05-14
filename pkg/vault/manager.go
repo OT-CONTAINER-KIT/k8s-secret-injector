@@ -78,7 +78,10 @@ func ConfigureVaultSecrets(client *api.Client, secretConfigs []string, vaultCfg 
 		secretConfig.Path = secretConfigData.Path
 		secretConfig.Version = secretConfigData.Version
 		secretConfig.UseSecretNamesAsKeys, _ = strconv.ParseBool(secretConfigData.UseSecretNamesAsKeys)
-		GetKVConfig(client, &secretConfig)
+		err = GetKVConfig(client, &secretConfig)
+		if err != nil {
+			return nil, fmt.Errorf("unable to get kv config %s - %+v", secretConfigJSONString, err)
+		}
 
 		secretsConfigList = append(secretsConfigList, secretConfig)
 	}
@@ -321,7 +324,7 @@ func RetrieveSecrets(client *api.Client, vaultCfg *Config) (map[string]interface
 	var err error
 
 	for _, secretConfig := range vaultCfg.SecretsConfigList {
-		secretConfigData := make(map[string]interface{})
+		secretConfigData := make(map[string]interface{}) //nolint
 		secretConfigData, err = RetrieveSecret(client, &secretConfig)
 		if err != nil {
 			return nil, fmt.Errorf("Error getting secrets from vault: %v", err)
