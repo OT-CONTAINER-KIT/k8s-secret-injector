@@ -27,3 +27,32 @@
   - action: "Build Docker image"
     type: "DOCKERFILE"
     dockerfile_path: "Dockerfile"
+
+- pipeline: "code-quality"
+  on: "EVENT"
+
+  events:
+  - type: "PUSH"
+    refs:
+    - "refs/heads/master"
+    - "refs/pull/*"
+  priority: "NORMAL"
+  fail_on_prepare_env_warning: true
+  - action: "Lint Dockerfile"
+    type: "DOCKERFILE_LINTER"
+    local_path: "Dockerfile"
+    shell_type: "sh"
+
+  - action: "Execute: go build -o k8s-secret-injector"
+    type: "BUILD"
+    working_directory: "/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
+    docker_image_name: "library/golang"
+    docker_image_tag: "1.16.0"
+    execute_commands:
+    - "export GOPATH=/"
+    - "export GO15VENDOREXPERIMENT=1"
+    - "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.40.0"
+    - "./bin/golangci-lint run ./..."
+    volume_mappings:
+    - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
+    shell: "BASH"
