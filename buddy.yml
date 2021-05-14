@@ -57,7 +57,7 @@
     - "export GOPATH=/"
     - "export GO15VENDOREXPERIMENT=1"
     - "curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.40.0"
-    - "./bin/golangci-lint run ./..."
+    - "./bin/golangci-lint run ./... --timeout 5m0s"
     volume_mappings:
     - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
     shell: "BASH"
@@ -78,7 +78,7 @@
     type: "DOCKER_PUSH"
     login: "abhishek-dubey"
     password: "secure!b1YxTrhil5I5L6q+u3Ctiw==.Ix9cDbdNIKsSty7IWShSfw=="
-    docker_image_tag: "4.0,latest"
+    docker_image_tag: "$BUDDY_EXECUTION_BRANCH,latest,$BUDDY_EXECUTION_TAG"
     repository: "$IMAGE_NAME"
     registry: "quay.io"
     trigger_conditions:
