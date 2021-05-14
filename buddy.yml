@@ -1,5 +1,5 @@
 ---
-- pipeline: "Build CodeBase"
+- pipeline: "build-code"
   on: "EVENT"
 
   events:
@@ -24,3 +24,6 @@
     volume_mappings:
     - "/:/src/github.com/OT-CONTAINER-KIT/k8s-secret-injector"
     shell: "BASH"
+  - action: "Build Docker image"
+    type: "DOCKERFILE"
+    dockerfile_path: "Dockerfile"
