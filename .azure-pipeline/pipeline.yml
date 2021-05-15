@@ -96,3 +96,17 @@ stages:
           command: 'build'
           Dockerfile: '**/Dockerfile'
           tags: '$(Build.BuildId)'
+
+- stage: release_binaries
+  dependsOn: ["build", "build_image"]
+  jobs:
+    - job: goreleaser
+      dependsOn: []  
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - script: scripts/goreleaser.sh
+          displayName: "Releasing go binaries"
+      env:
+        GITHUB_TOKEN: $(GithubToken)
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
