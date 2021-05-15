@@ -12,7 +12,7 @@ stages:
   jobs:
     - job: spellcheck
       dependsOn: []
-        pool:
-          vmImage: "ubuntu-18.04"
+      pool:
+        vmImage: "ubuntu-18.04"
       steps:
         - script: scripts/spellcheck.sh
