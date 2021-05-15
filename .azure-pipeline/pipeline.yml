@@ -25,8 +25,32 @@ stages:
             command: 'custom'
             customCommand: 'vet'
 
-- stage: build
+- stage: code_quality
   dependsOn: ["precheck"]
+  jobs:
+    - job: golang_ci_lint
+      dependsOn: []
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - task: GoTool@0
+          displayName: "Installing Golang"
+          inputs:
+            version: '1.16'
+        - script: |
+            curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.40.0
+            ./bin/golangci-lint run --timeout 5m0s ./...
+          displayName: "Executing golang-ci lint"
+    - job: dockerfile_lint
+      dependsOn: []
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - script: scripts/dockerfile-linter.sh
+          displayName: "Executing dockerlinter"
+
+- stage: build
+  dependsOn: ["code_quality"]
   jobs:
     - job: linux_amd64
       dependsOn: []
@@ -41,7 +65,7 @@ stages:
           displayName: "Executing go build"
           inputs:
             command: 'build'
-            arguments: '-o k8s-secret-injector'
+            arguments: '-o $(Agent.BuildDirectory)/k8s-secret-injector'
         - task: ArchiveFiles@2
           displayName: 'Archiving go binary'
           inputs:
