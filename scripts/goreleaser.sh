@@ -6,7 +6,7 @@ install_goreleaser() {
 
 release() {
     install_goreleaser
-    goreleaser release --rm-dist
+    ./bin/goreleaser release --rm-dist
 }
 
 compare_version() {
