@@ -146,7 +146,7 @@ stages:
           displayName: "Publish github image"
           inputs:
             containerRegistry: 'GithubServiceConnection'
-            repository: 'ot-container-kit/k8s-secret-injector/k8s-secret-injector'
+            repository: 'ot-container-kit/k8s-secret-injector/k8s-secret-injectors'
             command: 'buildAndPush'
             Dockerfile: '**/Dockerfile'
             tags: |
