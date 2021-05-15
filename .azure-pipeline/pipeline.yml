@@ -172,10 +172,22 @@ stages:
         - task: ExtractFiles@1
           displayName: "Extracting files"
           inputs:
-            archiveFilePatterns: '$(System.ArtifactsDirectory)/k8s-secret-injector-linux-amd64.zip'
+            archiveFilePatterns: '$(System.ArtifactsDirectory)/drop/k8s-secret-injector-linux-amd64.zip'
             destinationFolder: '$(Agent.BuildDirectory)'
             cleanDestinationFolder: true
             overwriteExistingFiles: true
         - script: |
             $(Agent.BuildDirectory)/k8s-secret-injector --help
           displayName: "Executing k8s-secret-injector"
+
+- stage: docs
+  dependsOn: ["release_binaries", "release_quay", "release_github_image"]
+  jobs:
+    - job: verfiy
+      dependsOn: []  
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - script: |
+            echo "No documentation is for this project!!"
+          displayName: "Building documentation"
