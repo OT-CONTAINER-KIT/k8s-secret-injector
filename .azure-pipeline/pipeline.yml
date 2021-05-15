@@ -16,9 +16,29 @@ stages:
         vmImage: "ubuntu-18.04"
       steps:
         - task: GoTool@0
+          displayName: "Installing Golang"
           inputs:
             version: '1.16'
         - task: Go@0
+          displayName: "Executing go vet"
           inputs:
             command: 'custom'
             customCommand: 'vet'
+
+- stage: build
+  dependsOn: ["precheck"]
+  jobs:
+    - job: linux_amd64
+      dependsOn: []
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - task: GoTool@0
+          displayName: "Installing Golang"
+          inputs:
+            version: '1.16'
+        - task: Go@0
+          displayName: "Executing go build"
+          inputs:
+            command: 'build'
+            arguments: '-o k8s-secret-injector'
