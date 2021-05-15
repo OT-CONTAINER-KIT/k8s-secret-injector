@@ -6,7 +6,7 @@ download_hadolint() {
 }
 
 execute_hadolint() {
-    ./hadolint-Linux-x86_64 ../Dockerfile --ignore DL3007 --ignore DL3018
+    ./hadolint-Linux-x86_64 Dockerfile --ignore DL3007 --ignore DL3018
 }
 
 main() {
