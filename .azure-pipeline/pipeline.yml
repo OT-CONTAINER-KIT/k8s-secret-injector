@@ -153,3 +153,29 @@ stages:
               latest
               $(Build.SourceBranchName)
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- stage: verify
+  dependsOn: ["release_binaries", "release_quay", "release_github_image"]
+  jobs:
+    - job: verfiy
+      dependsOn: []  
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - task: DownloadBuildArtifacts@0
+          displayName: "Downloading the artifact"
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            artifactName: 'drop'
+            downloadPath: '$(System.ArtifactsDirectory)'
+        - task: ExtractFiles@1
+          displayName: "Extracting files"
+          inputs:
+            archiveFilePatterns: '$(System.ArtifactsDirectory)/k8s-secret-injector-linux-amd64.zip'
+            destinationFolder: '$(Agent.BuildDirectory)'
+            cleanDestinationFolder: true
+            overwriteExistingFiles: true
+        - script: |
+            $(Agent.BuildDirectory)/k8s-secret-injector --help
+          displayName: "Executing k8s-secret-injector"
