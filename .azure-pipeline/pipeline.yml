@@ -41,6 +41,10 @@ stages:
             curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.40.0
             ./bin/golangci-lint run --timeout 5m0s ./...
           displayName: "Executing golang-ci lint"
+
+- stage: dockerfile_lint
+  dependsOn: ["precheck"]
+  jobs:
     - job: dockerfile_lint
       dependsOn: []
       pool:
