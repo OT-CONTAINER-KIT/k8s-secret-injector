@@ -10,9 +10,15 @@ pr:
 stages:
 - stage: precheck
   jobs:
-    - job: spellcheck
+    - job: govet
       dependsOn: []
         pool:
           vmImage: "ubuntu-18.04"
       steps:
-        - script: scripts/spellcheck.sh
+        - task: GoTool@0
+          inputs:
+            version: '1.16'
+        - task: Go@0
+          inputs:
+            command: 'custom'
+            customCommand: 'vet'
