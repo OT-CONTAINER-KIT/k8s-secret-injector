@@ -174,7 +174,7 @@ stages:
           inputs:
             archiveFilePatterns: '$(System.ArtifactsDirectory)/drop/k8s-secret-injector-linux-amd64.zip'
             destinationFolder: '$(Agent.BuildDirectory)'
-            cleanDestinationFolder: true
+            cleanDestinationFolder: false
             overwriteExistingFiles: true
         - script: |
             $(Agent.BuildDirectory)/k8s-secret-injector --help
