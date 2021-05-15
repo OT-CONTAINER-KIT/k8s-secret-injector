@@ -126,7 +126,7 @@ stages:
           displayName: "Publish quay image"
           inputs:
             containerRegistry: 'QuayServiceConnection'
-            repository: 'quay.io/opstree/k8s-secret-injector'
+            repository: 'opstree/k8s-secret-injector'
             command: 'buildAndPush'
             Dockerfile: '**/Dockerfile'
             tags: |
@@ -146,7 +146,7 @@ stages:
           displayName: "Publish github image"
           inputs:
             containerRegistry: 'GithubServiceConnection'
-            repository: 'docker.pkg.github.com/ot-container-kit/k8s-secret-injector/k8s-secret-injector'
+            repository: 'ot-container-kit/k8s-secret-injector/k8s-secret-injector'
             command: 'buildAndPush'
             Dockerfile: '**/Dockerfile'
             tags: |
