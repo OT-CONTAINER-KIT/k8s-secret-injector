@@ -22,7 +22,8 @@ var cfgFile string
 
 //The verbose flag value
 var v string
-var command string
+
+// var command string
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{

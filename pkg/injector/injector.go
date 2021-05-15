@@ -89,7 +89,7 @@ func InjectSecrets(secretData map[string]interface{}, environ []string, sanitize
 			prefixedEnv = true
 		}
 
-		if prefixedEnv == true {
+		if prefixedEnv {
 			// if the secret data contains an explicit key from env add it to the sanitized env
 			log.Debugf("Explicit key: %s found in env vars, checking if its in vault secrets...", vaultSecretKey)
 			explicitKey = true

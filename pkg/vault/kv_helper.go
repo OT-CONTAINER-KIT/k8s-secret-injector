@@ -119,17 +119,17 @@ func ensureTrailingSlash(s string) string {
 }
 
 // ensureNoTrailingSlash ensures the given string has a trailing slash.
-func ensureNoTrailingSlash(s string) string {
-	s = strings.TrimSpace(s)
-	if s == "" {
-		return ""
-	}
+// func ensureNoTrailingSlash(s string) string {
+// 	s = strings.TrimSpace(s)
+// 	if s == "" {
+// 		return ""
+// 	}
 
-	for len(s) > 0 && s[len(s)-1] == '/' {
-		s = s[:len(s)-1]
-	}
-	return s
-}
+// 	for len(s) > 0 && s[len(s)-1] == '/' {
+// 		s = s[:len(s)-1]
+// 	}
+// 	return s
+// }
 
 // ensureNoLeadingSlash ensures the given string has a trailing slash.
 func ensureNoLeadingSlash(s string) string {

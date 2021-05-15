@@ -1,3 +1,10 @@
+### v4.0
+##### May 12, 2021
+
+#### :tada: [Features Added]
+
+- Added support for GCP secret manager
+
 ### v3.0
 ##### May 9, 2021
 

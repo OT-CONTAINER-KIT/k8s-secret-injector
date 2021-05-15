@@ -51,7 +51,7 @@ func getVault(ctx context.Context, cfg AzureConfig) keyvault.SecretListResultPag
 func RetrieveSecretFromAzure(cfg AzureConfig) map[string]interface{} {
 	secretData := make(map[string]interface{})
 	secretList := getVault(context.Background(), cfg)
-	for ; secretList.NotDone(); secretList.NextWithContext(context.Background()) {
+	for ; secretList.NotDone(); secretList.NextWithContext(context.Background()) { //nolint
 		secWithoutType := make([]string, 1)
 		for _, secret := range secretList.Values() {
 			secWithoutType = append(secWithoutType, path.Base(*secret.ID))
