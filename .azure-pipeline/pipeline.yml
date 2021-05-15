@@ -107,6 +107,6 @@ stages:
       steps:
         - script: scripts/goreleaser.sh
           displayName: "Releasing go binaries"
-      env:
-        GITHUB_TOKEN: $(GithubToken)
+          env:
+            GITHUB_TOKEN: $(GithubToken)
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
