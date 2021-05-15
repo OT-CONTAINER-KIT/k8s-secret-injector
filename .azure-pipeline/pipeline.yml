@@ -7,6 +7,9 @@ pr:
     include:
     - master
 
+variables:
+  - group: RuntimeVariables
+  
 stages:
 - stage: precheck
   jobs:
@@ -110,3 +113,24 @@ stages:
           env:
             GITHUB_TOKEN: $(GithubToken)
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- stage: release_quay
+  dependsOn: ["build", "build_image"]
+  jobs:
+    - job: quay
+      dependsOn: []  
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - task: Docker@2
+          displayName: "Publish quay image"
+          inputs:
+            containerRegistry: 'QuayServiceConnection'
+            repository: 'quay.io/opstree/k8s-secret-injector'
+            command: 'buildAndPush'
+            Dockerfile: '**/Dockerfile'
+            tags: |
+              latest
+              $(Build.SourceBranchName)
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
