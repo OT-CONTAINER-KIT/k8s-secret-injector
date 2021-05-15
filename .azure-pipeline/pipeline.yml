@@ -45,7 +45,7 @@ stages:
         - task: ArchiveFiles@2
           displayName: 'Archiving go binary'
           inputs:
-            rootFolderOrFile: '$(Build.BinariesDirectory)/k8s-secret-injector'
+            rootFolderOrFile: '$(Agent.BuildDirectory)/k8s-secret-injector'
             includeRootFolder: true
             archiveType: 'zip'
             archiveFile: '$(Build.ArtifactStagingDirectory)/compiled/k8s-secret-injector-linux-amd64.zip'
