@@ -12,8 +12,8 @@ stages:
   jobs:
     - job: govet
       dependsOn: []
-        pool:
-          vmImage: "ubuntu-18.04"
+      pool:
+        vmImage: "ubuntu-18.04"
       steps:
         - task: GoTool@0
           inputs:
