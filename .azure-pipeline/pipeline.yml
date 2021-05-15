@@ -134,3 +134,22 @@ stages:
               $(Build.SourceBranchName)
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
+- stage: release_github_image
+  dependsOn: ["build", "build_image"]
+  jobs:
+    - job: github
+      dependsOn: []  
+      pool:
+        vmImage: "ubuntu-18.04"
+      steps:
+        - task: Docker@2
+          displayName: "Publish github image"
+          inputs:
+            containerRegistry: 'GithubServiceConnection'
+            repository: 'docker.pkg.github.com/ot-container-kit/k8s-secret-injector/k8s-secret-injector'
+            command: 'buildAndPush'
+            Dockerfile: '**/Dockerfile'
+            tags: |
+              latest
+              $(Build.SourceBranchName)
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
