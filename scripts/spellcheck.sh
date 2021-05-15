@@ -1,8 +1,8 @@
 #!/bin/bash
 
 install_spellcheck() {
-    apt-get update -y
-    apt-get install -y aspell
+    sudo apt-get update -y
+    sudo apt-get install -y aspell
 }
 
 run_spellcheck() {
