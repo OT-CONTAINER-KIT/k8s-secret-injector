@@ -12,6 +12,7 @@ resources:
   - repository: golang-template
     type: github
     name: opstree/azure-devops-template
+    endpoint: OT-CONTAINER-KIT
 
 extends:
   template: golang-ci.yaml@golang-template
